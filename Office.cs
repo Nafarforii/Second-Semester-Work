@@ -47,7 +47,7 @@ namespace SemesterWork2
             #region Bookings
             List<Booking> AllBookings = new List<Booking>();
             #endregion
-
+            
             do
             {
                 Console.WriteLine("-----------------------------------");
@@ -62,7 +62,7 @@ namespace SemesterWork2
                 Console.WriteLine();
                 if (AllAvailableCars.Count == 0)
                 {
-                    Console.WriteLine("Sorry for the inconvenience, but we don't have any available cars right now!");
+                    Console.WriteLine("Sorry for the inconvenience, but we don't have any cars right now!");
                     break;
                 }
                 
@@ -91,7 +91,7 @@ namespace SemesterWork2
                         continue;
                     }
 
-                    try
+                        try
                     {
                         Num = int.Parse(Reply.Split(' ')[1]);
                     }
@@ -126,15 +126,17 @@ namespace SemesterWork2
                         Console.WriteLine("This isn't a valid number from the list!");
                         continue;
                     }
-                    try
-                    {
-                        Num = int.Parse(Reply.Split(' ')[1]);
-                    }
-                    catch (FormatException)
-                    {
-                        Console.WriteLine($"{(Reply.Split(' ')[1])} isn't a valid number!");
-                        continue;
-                    }
+
+                        try
+                        {
+                            Num = int.Parse(Reply.Split(' ')[1]);
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine($"{(Reply.Split(' ')[1])} isn't a valid number!");
+                            continue;
+                        }
+
                     if (Num > AllAvailableCars.Count || Num < 1)
                     {
                         Console.WriteLine("There isn't a car with that number!\n\n");
@@ -195,8 +197,7 @@ namespace SemesterWork2
                     AllAvailableCars[Num - 1].Availability = false;
                     AllBookings.Add(booking);
                 }
-                Console.WriteLine();
-                Console.WriteLine();
+                Console.WriteLine("\n");
             } while (true);
         }
     }
