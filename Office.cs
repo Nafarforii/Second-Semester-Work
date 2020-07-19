@@ -58,7 +58,7 @@ namespace SemesterWork2
 
 
                 var Reply = Console.ReadLine();
-                var command = Reply.Split(' ')[0];
+                var command = Reply.Split(' ')[0].ToLower();
                 Console.WriteLine();
                 if (AllAvailableCars.Count == 0)
                 {
