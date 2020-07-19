@@ -68,27 +68,39 @@ namespace SemesterWork2
                 
                 if (command == "list")
                 {
-                    if (AllAvailableCars.Count == 0)
-                    {
-                        Console.WriteLine("There are no more available cars for now! Please wait and try again later!");
-                        Console.WriteLine();
-                        Console.WriteLine();
-                        continue;
-                    }
-                    Console.WriteLine("This is a list of all our cars:\n");
+                    Console.WriteLine("This is a list of all of our cars:\n");
                     for (int i = 0; i < AllAvailableCars.Count; i++)
                     {
                         if (AllAvailableCars[i].Availability == false)
                         {
                             Console.WriteLine(i + 1 + "." + AllAvailableCars[i].BrandInfo.Brand + " " + AllAvailableCars[i].BrandInfo.Model + " " + AllAvailableCars[i].Type + " | Unavailable");
                         }
-                        Console.WriteLine(i + 1 + "." + AllAvailableCars[i].BrandInfo.Brand + " " + AllAvailableCars[i].BrandInfo.Model + " " + AllAvailableCars[i].Type + " | Available");
+                        else
+                        {
+                            Console.WriteLine(i + 1 + "." + AllAvailableCars[i].BrandInfo.Brand + " " + AllAvailableCars[i].BrandInfo.Model + " " + AllAvailableCars[i].Type + " | Available");
+                        }
                     }
                 }
 
                 if (command == "info")
-                {  
-                    int Num = int.Parse(Reply.Split(' ')[1]);
+                {
+                    int Num = 0;
+                    if (Reply == "info")
+                    {
+                        Console.WriteLine("This isn't a valid number from the list!");
+                        continue;
+                    }
+
+                    try
+                    {
+                        Num = int.Parse(Reply.Split(' ')[1]);
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine($"{(Reply.Split(' ')[1])} isn't a valid number!");
+                        continue;
+                    }
+
                     if (Num > AllAvailableCars.Count || Num < 1)
                     {
                         Console.WriteLine("There isn't a car with that number!\n\n");
@@ -108,7 +120,21 @@ namespace SemesterWork2
             
                 if (command == "book")
                 {
-                    int Num = int.Parse(Reply.Split(' ')[1]);
+                    int Num = 0;
+                    if (Reply == "book")
+                    {
+                        Console.WriteLine("This isn't a valid number from the list!");
+                        continue;
+                    }
+                    try
+                    {
+                        Num = int.Parse(Reply.Split(' ')[1]);
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine($"{(Reply.Split(' ')[1])} isn't a valid number!");
+                        continue;
+                    }
                     if (Num > AllAvailableCars.Count || Num < 1)
                     {
                         Console.WriteLine("There isn't a car with that number!\n\n");
